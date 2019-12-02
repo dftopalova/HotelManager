@@ -15,4 +15,4 @@ HotelManager is a hotel management system that provides the following functional
 - Express.js
 - Mongoose.js
 - MongoDB
-- ReactJS(or Angular ?)
+- ReactJS (or Angular/Vue.js ?)
