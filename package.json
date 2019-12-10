@@ -1,0 +1,24 @@
+{
+  "name": "hotelmanager",
+  "version": "1.0.0",
+  "description": "Hotel Management System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dftopalova/HotelManager.git"
+  },
+  "author": "dftopalova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dftopalova/HotelManager/issues"
+  },
+  "homepage": "https://github.com/dftopalova/HotelManager#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "4.17.1",
+    "mongoose": "^5.8.0"
+  }
+}
