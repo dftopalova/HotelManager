@@ -1,7 +1,11 @@
 const express = require("express");
 const apiRouter = express.Router();
+
 const userRouter = require('./users');
 const userModel = require('../models/user');
+
+const bookingRouter = require('./bookings');
+const bookingModel = require('../models/booking');
 
 apiRouter.post('/register', (req, res, next) => {
   const { email, firstName, lastName, password } = req.body;
@@ -16,5 +20,7 @@ apiRouter.get('/', (req, res) => {
 });
 
 apiRouter.use('/users', userRouter);
+
+apiRouter.use('/bookings', bookingRouter);
 
 module.exports = apiRouter;
