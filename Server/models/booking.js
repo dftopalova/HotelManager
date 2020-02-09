@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
+
+    roomNumber: Number,
+
     startDate: {
         type: Date
     },
