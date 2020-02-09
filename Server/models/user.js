@@ -15,11 +15,12 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
         validate: [
             {
                 validator: (email) => {
-                    const emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                    return emailRegex.test(email.text)
+                    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                    return emailRegex.test(email)
                 },
                 message: props => `${props.value} is not a valid email!`
             }
@@ -32,21 +33,19 @@ const userSchema = new mongoose.Schema({
         minlength: [3, 'Password should be at least 3 symbols!']
     },
 
-    phone: String,
-
     isAdmin: {
         type: Boolean,
         default: false,
     },
 
-    bookings: [{type: Schema.Types.ObjectId, ref: 'Booking'}]
+    bookings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Booking'}]
 
 });
 
 
 userSchema.methods = {
     matchPassword: function (password) {
-        return bcrypt.compare(password, this.password);
+        return bcrypt.compareSync(password, this.password);
     },
 
     checkIsAdmin: function () {
@@ -54,21 +53,21 @@ userSchema.methods = {
     }
 };
 
-userSchema.pre('save', function (next) {
-    if (this.isModified('password')) {
-        bcrypt.genSalt(saltRounds, (err, salt) => {
-            bcrypt.hash(this.password, salt, (err, hash) => {
-                if (err) {
-                    next(err);
-                    return;
-                }
-                this.password = hash;
-                next();
-            });
-        });
-        return;
-    }
-    next();
-});
+// userSchema.pre('save', function (next) {
+//     if (this.isModified('password')) {
+//         bcrypt.genSalt(saltRounds, (err, salt) => {
+//             bcrypt.hash(this.password, salt, (err, hash) => {
+//                 if (err) {
+//                     next(err);
+//                     return;
+//                 }
+//                 this.password = hash;
+//                 next();
+//             });
+//         });
+//         return;
+//     }
+//     next();
+// });
 
 module.exports = mongoose.model('User', userSchema);
