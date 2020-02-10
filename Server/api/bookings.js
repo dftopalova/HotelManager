@@ -18,12 +18,16 @@ bookingRouter.get('/:id', (req, res, next) => {
         .catch(next);
 });
 
-// create booking and add it in user's bookings collection
+// create booking and add it in user's bookings collection if there is such a user in db, else create him first
 bookingRouter.post('/', async (req, res, next) => {
-    const { userEmail, roomNumber, startDate, endDate, guests } = req.body;
+    const { userEmail, firstName, lastName, roomNumber, startDate, endDate, guests } = req.body;
 
     try {
         const user = await User.findOne({ _email: userEmail });
+        if (!user) {
+            user = new User({ userEmail, firstName, lastName, roomNumber });
+            user.save()
+        }
         const createdBooking = await Booking.create({ user: user.id, roomNumber, startDate, endDate, guests });
         await User.updateOne({ _id: user.id }, { $push: { bookings: createdBooking } });
 
