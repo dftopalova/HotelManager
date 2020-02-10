@@ -40,4 +40,12 @@ userRouter.delete('/:id', (req, res, next) => {
         .catch(next);
 });
 
+// get all user's bookings
+userRouter.get('/:id/bookings', (req, res, next) => {
+    User.findById(req.params.id)
+        .populate('bookings',)
+        .then(bookings => res.send(bookings))
+        .catch(next);
+})
+
 module.exports = userRouter;

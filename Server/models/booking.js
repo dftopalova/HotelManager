@@ -16,10 +16,12 @@ const bookingSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-
-    days: Number,
-    totalPrice: Number,
-    guests: Number,
+    
+    guests: {
+        type: Number,
+        min: 1,
+        max: 4
+    },
 
     user: {
         type: mongoose.Schema.Types.ObjectId,
