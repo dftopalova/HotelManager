@@ -7,6 +7,8 @@ const userModel = require('../models/user');
 const bookingRouter = require('./bookings');
 const bookingModel = require('../models/booking');
 
+const adminRouter = require('./admin');
+
 apiRouter.post('/register', (req, res, next) => {
   const { email, firstName, lastName, password } = req.body;
   userModel.create({ email, firstName, lastName, password })
@@ -22,5 +24,7 @@ apiRouter.get('/', (req, res) => {
 apiRouter.use('/users', userRouter);
 
 apiRouter.use('/bookings', bookingRouter);
+
+apiRouter.use('/admin', adminRouter);
 
 module.exports = apiRouter;
