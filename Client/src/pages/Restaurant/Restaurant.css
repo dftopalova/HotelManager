@@ -1,0 +1,32 @@
+.reservation-container {
+    text-align: center;
+}
+
+.reservation-input {
+    margin: 13px 0;
+}
+
+.reservation-empty-date {
+    display: inline-block;
+    border: solid 1px red;
+}
+
+.restaurant-image {
+    width: 100%;
+    margin: 0 5px;
+}
+
+.restaurant-image {
+    width: 100%;
+    margin: 0 5px;
+}
+
+.restaurant-text {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.restaurant-title {
+    font-size: 30px;
+    color: black
+}

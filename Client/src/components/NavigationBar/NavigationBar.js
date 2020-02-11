@@ -10,6 +10,7 @@ class NavigationBar extends Component {
         this.navigateToHome = this.navigateToHome.bind(this);
         this.navigateToGallery = this.navigateToGallery.bind(this);
         this.navigateToRooms = this.navigateToRooms.bind(this);
+        this.navigateToRestaurant = this.navigateToRestaurant.bind(this);
         this.navigateToContacts = this.navigateToContacts.bind(this);
     }
 
@@ -23,6 +24,10 @@ class NavigationBar extends Component {
 
     navigateToRooms() {
         this.props.history.push('/rooms');
+    }
+
+    navigateToRooms() {
+        this.props.history.push('/restaurant');
     }
 
     navigateToContacts() {
@@ -44,6 +49,11 @@ class NavigationBar extends Component {
                         variant="contained"
                         onClick={this.navigateToRooms}
                     >Rooms</Button>
+                    <Button
+                        className="navigation-button"
+                        variant="contained"
+                        onClick={this.navigateToRestaurant}
+                    >Restaurant</Button>
                     <Button
                         className="navigation-button"
                         variant="contained"
