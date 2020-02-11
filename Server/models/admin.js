@@ -39,7 +39,6 @@ const adminSchema = new mongoose.Schema({
 
 });
 
-
 adminSchema.methods = {
     matchPassword: function (password) {
         return bcrypt.compareSync(password, this.password);
@@ -49,5 +48,22 @@ adminSchema.methods = {
         return this.isAdmin;
     }
 };
+
+adminSchema.pre('save', function (next) {
+    if (this.isModified('password')) {
+        bcrypt.genSalt(saltRounds, (err, salt) => {
+            bcrypt.hash(this.password, salt, (err, hash) => {
+                if (err) {
+                    next(err);
+                    return;
+                }
+                this.password = hash;
+                next();
+            });
+        });
+        return;
+    }
+    next();
+});
 
 module.exports = mongoose.model('Admin', adminSchema);

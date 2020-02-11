@@ -20,21 +20,39 @@ bookingRouter.get('/:id', (req, res, next) => {
 
 // create booking and add it in user's bookings collection if there is such a user in db, else create him first
 bookingRouter.post('/', async (req, res, next) => {
-    const { userEmail, firstName, lastName, roomNumber, startDate, endDate, guests } = req.body;
+    const { firstName, lastName, email, phone, startDate, endDate, roomType } = req.body;
 
     try {
-        const user = await User.findOne({ _email: userEmail });
+        let user = User.findOne({ _email: email });
         if (!user) {
-            user = new User({ userEmail, firstName, lastName, roomNumber });
+            user = await User.create({ firstName: firstName, lastName: lastName, email: email, phone: phone });
             user.save()
         }
-        const createdBooking = await Booking.create({ user: user.id, roomNumber, startDate, endDate, guests });
+        const createdBooking = await Booking.create({
+            firstName: firstName, lastName: lastName, email: email,
+            phone: phone, startDate: startDate, endDate: endDate, roomType: roomType
+        });
         await User.updateOne({ _id: user.id }, { $push: { bookings: createdBooking } });
 
         res.status(200).send('Created Successfully');
     } catch (e) {
         next(e);
     }
+});
+
+//delete booking
+bookingRouter.delete('/', (req, res, next) => {
+    Booking.deleteOne({ _id: req.params.id })
+    .then(deleted => res.send(deleted)
+    .catch(next))
+})
+
+//update booking
+bookingRouter.put('/:id', (req, res, next) => {
+    const { firstName, lastName, email, phone, startDate, endDate, roomType } = req.body;
+    Booking.updateOne({ _id: req.params.id }, { firstName, lastName, email, phone, startDate, endDate, roomType })
+        .then(updatedBooking => res.send(updatedBooking))
+        .catch(next);
 });
 
 module.exports = bookingRouter;

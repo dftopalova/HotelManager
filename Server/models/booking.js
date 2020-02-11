@@ -2,7 +2,22 @@ const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
 
-    roomNumber: Number,
+    firstName: {
+        type: String,
+        required: true
+    },
+
+    lastName: {
+        type: String,
+        required: true
+    },
+
+    phone: String,
+
+    email: {
+        type: String,
+        required: true
+    },
 
     startDate: {
         type: Date
@@ -16,17 +31,12 @@ const bookingSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    
-    guests: {
-        type: Number,
-        min: 1,
-        max: 4
-    },
 
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+    roomType:{
+        type: String,
+        default: "single"
     }
+    
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);
