@@ -1,0 +1,12 @@
+.booking-container {
+    text-align: center;
+}
+
+.booking-input {
+    margin: 13px 0;
+}
+
+.booking-empty-date {
+    display: inline-block;
+    border: solid 1px red;
+}

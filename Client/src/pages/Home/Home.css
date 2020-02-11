@@ -1,0 +1,14 @@
+.home-page-image {
+    width: 100%;
+    margin: 0 5px;
+}
+
+.home-page-text {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.home-page-title {
+    font-size: 30px;
+    color: black
+}

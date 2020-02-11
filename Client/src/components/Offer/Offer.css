@@ -1,0 +1,28 @@
+.offer-container {
+    margin: 10px 0;
+}
+
+.offer-content {
+    padding: 10px;
+}
+
+.offer-title {
+    margin-bottom: 5px;
+}
+
+.offer-image {
+    height: 240px
+}
+
+.offer-info {
+    font-size: 16px;
+}
+
+.offer-button {
+    margin-top: 10px !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+}
