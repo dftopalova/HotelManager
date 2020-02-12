@@ -5,7 +5,7 @@ const User = require('../models/user');
 const tableReservationRouter = express.Router();
 
 // creating table reservation for an user
-tableReservationRouter.post('/', (req,res, next)=>{
+tableReservationRouter.post('/', async (req, res, next) => {
     const { firstName, lastName, email, phone, countPeople } = req.body;
 
     try {
@@ -15,7 +15,7 @@ tableReservationRouter.post('/', (req,res, next)=>{
             user.save()
         }
         const createdTableReservation = await TableReservation.create({
-            firstName: firstName, lastName: lastName, email: email, phone: phone, countPeople: countPeople 
+            firstName: firstName, lastName: lastName, email: email, phone: phone, countPeople: countPeople
         });
         await User.updateOne({ _id: user.id }, { $push: { tableReservation: createdTableReservation } });
 
@@ -23,4 +23,6 @@ tableReservationRouter.post('/', (req,res, next)=>{
     } catch (e) {
         next(e);
     }
-})
+});
+
+module.exports = tableReservationRouter;

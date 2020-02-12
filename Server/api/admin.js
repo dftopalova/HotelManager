@@ -33,7 +33,7 @@ adminRouter.get('/rooms/:id', isLoggedIn, (req, res, next) => {
 });
 
 // admin make room reservation for user
-adminRouter.post('/rooms/:id', isLoggedIn, (req, res, next) => {
+adminRouter.post('/rooms/:id', isLoggedIn, async (req, res, next) => {
   const { firstName, lastName, email, phone, startDate, endDate, roomType } = req.body;
 
   let user = User.findOne({ _email: email });
@@ -74,3 +74,5 @@ function isLoggedIn(req, res, next) {
     return next();
   res.redirect('/admin/login');
 }
+
+module.exports = adminRouter;

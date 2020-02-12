@@ -6,13 +6,13 @@ const roomSchema = new mongoose.Schema({
   number: Number,
   
   available: {
-    type: DataTypes.BOOLEAN,
+    type: Boolean,
     allowNull: false,
     defaultValue: true
   },
 
   checkin: {
-    type: DataTypes.BOOLEAN,
+    type: Boolean,
     allowNull: false,
     defaultValue: false
   },
