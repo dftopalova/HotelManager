@@ -6,6 +6,7 @@ import Gallery from './pages/Gallery/Gallery';
 import Rooms from './pages/Rooms/Rooms';
 import BookingForm from './pages/BookingForm/BookingForm';
 import NavigationBar from './components/NavigationBar/NavigationBar';
+import Restaurant from './pages/Restaurant/Restaurant'
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/rooms" component={Rooms} />
       <Route path="/gallery" component={Gallery} />
       <Route path="/contacts" component={Contacts} />
+      <Route path="/restaurant" component={Restaurant} />
       <Route path="/book" render={(props) => {
         return <BookingForm {...props} />
       }} />

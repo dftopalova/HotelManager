@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import image from '../../assets/restaurant.jpeg';
+import image from '../../assets/restaurant1.jpg';
 import 'axios';
 import './Restaurant.css';
 import Axios from 'axios';
@@ -72,13 +72,13 @@ class Restaurant extends Component {
     }
 
     formIsValid() {
-        const { firstName, lastName, phone, email, startDate, endDate } = this.state;
+        const { firstName, lastName, phone, email } = this.state;
         return firstName !== '' && lastName !== '' && phone !== '' && email !== ''
     }
 
     sendData() {
         const url = 'http://localhost:8080/api/tables/reservations';
-        const { firstName: firstName, lastName, phone, email, countPeople } = this.state;
+        const { firstName, lastName, phone, email, countPeople } = this.state;
         const data = {
             firstName: firstName,
             lastName: lastName,
@@ -109,62 +109,58 @@ class Restaurant extends Component {
         } = this.state;
 
         return (
-
-            <Container maxWidth="md">
-                <img className="restaurant-image" src={image} alt="Front view" />
-                <div className="restaurant-text">
-                    <h3 className="restaurant-title">First class restaurant</h3>
+            <Container className="reservation-container" maxWidth="md">
+            <img className="restaurant-image" src={image} alt="Front view" />
+            <div className="restaurant-text">
+                <h3 className="restaurant-title">Five stars restaurant</h3>
+            </div>
+                <div className="reservation-input">
+                    <TextField
+                        error={this.handleRequiredInputValidation(firstName)}
+                        label="Fist Name*"
+                        value={firstName}
+                        onChange={this.handlefirstNameChange}
+                    />
                 </div>
-
-                <Container className="reservation-container" maxWidth="md">
-                    <div className="reservation-input">
-                        <TextField
-                            error={this.handleRequiredInputValidation(firstName)}
-                            label="Fist Name*"
-                            value={firstName}
-                            onChange={this.handlefirstNameChange}
-                        />
-                    </div>
-                    <div className="reservation-input">
-                        <TextField
-                            error={this.handleRequiredInputValidation(lastName)}
-                            label="Last Name*"
-                            value={lastName}
-                            onChange={this.handlelastNameChange}
-                        />
-                    </div>
-                    <div className="reservation-input">
-                        <TextField
-                            error={this.handleRequiredInputValidation(phone)}
-                            label="Phone Number*"
-                            value={phone}
-                            onChange={this.handlePhoneChange}
-                        />
-                    </div>
-                    <div className="reservation-input">
-                        <TextField
-                            error={this.handleRequiredInputValidation(email)}
-                            label="E-mail*"
-                            value={email}
-                            onChange={this.handleEmailChange}
-                        />
-                    </div>
-                    <div className="reservation-input">
-                        <TextField
-                            error={this.handleRequiredInputValidation(countPeople)}
-                            label="Count people*"
-                            value={countPeople}
-                            onChange={this.handleCountPeopleChange}
-                        />
-                    </div>
-                    <Button
-                        variant="contained"
-                        onClick={this.handleReserveButtonClicked}
-                    >Book</Button>
-                </Container>
+                <div className="reservation-input">
+                    <TextField
+                        error={this.handleRequiredInputValidation(lastName)}
+                        label="Last Name*"
+                        value={lastName}
+                        onChange={this.handlelastNameChange}
+                    />
+                </div>
+                <div className="reservation-input">
+                    <TextField
+                        error={this.handleRequiredInputValidation(phone)}
+                        label="Phone Number*"
+                        value={phone}
+                        onChange={this.handlePhoneChange}
+                    />
+                </div>
+                <div className="reservation-input">
+                    <TextField
+                        error={this.handleRequiredInputValidation(email)}
+                        label="E-mail*"
+                        value={email}
+                        onChange={this.handleEmailChange}
+                    />
+                </div>
+                <div className="reservation-input">
+                    <TextField
+                        error={this.handleRequiredInputValidation(countPeople)}
+                        label="Count people*"
+                        value={countPeople}
+                        onChange={this.handleCountPeopleChange}
+                    />
+                </div>
+                <Button
+                    variant="contained"
+                    onClick={this.handleReserveButtonClicked}
+                >Book</Button>
             </Container>
         );
     }
 }
 
-export default reservationForm;
+export default Restaurant;

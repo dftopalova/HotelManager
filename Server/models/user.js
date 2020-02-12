@@ -30,7 +30,9 @@ const userSchema = new mongoose.Schema({
 
     roomNumber: Number,
 
-    bookings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Booking'}]
+    bookings: [{type: mongoose.Schema.Types.ObjectId, ref: 'Booking'}],
+
+    tableReservations: [{type: mongoose.Schema.Types.ObjectId, ref: 'TableReservation'}]
 
 });
 

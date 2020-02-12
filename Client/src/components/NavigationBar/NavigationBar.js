@@ -26,7 +26,7 @@ class NavigationBar extends Component {
         this.props.history.push('/rooms');
     }
 
-    navigateToRooms() {
+    navigateToRestaurant() {
         this.props.history.push('/restaurant');
     }
 
