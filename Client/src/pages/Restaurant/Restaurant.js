@@ -157,7 +157,9 @@ class Restaurant extends Component {
                 <Button
                     variant="contained"
                     onClick={this.handleReserveButtonClicked}
-                >Book</Button>
+                >Reserve</Button>
+                <br></br>
+                <br></br>
             </Container>
         );
     }
