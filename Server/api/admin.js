@@ -13,9 +13,9 @@ adminRouter.get('/admin', function (req, res) {
 
 // process the login form
 // adminRouter.post('/login', do all our passport stuff here);
-adminRouter.post('/admin/login', passport.authenticate('admin-login', {
-  successRedirect: '/admin/menu', // redirect to the secure profile section
-  failureRedirect: '/admin/login' // redirect back to the signup page if there is an error
+adminRouter.post('/login', passport.authenticate('admin-login', {
+  successRedirect: '/menu', // redirect to the secure profile section
+  failureRedirect: '/login' // redirect back to the signup page if there is an error
 }));
 
 // get list of all rooms, only available for the admin
@@ -62,7 +62,7 @@ adminRouter.put("/checkout/room/:id", isLoggedIn, (req, res, next) => {
   //TODO
 });
 
-adminRouter.get('/admin/logout', isLoggedIn, function (req, res) {
+adminRouter.get('/logout', isLoggedIn, function (req, res) {
   req.session.destroy(function (err) {
     res.redirect('/admin');
   });
@@ -72,7 +72,7 @@ adminRouter.get('/admin/logout', isLoggedIn, function (req, res) {
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
-  res.redirect('/admin/login');
+  res.redirect('/login');
 }
 
 module.exports = adminRouter;
