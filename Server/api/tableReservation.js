@@ -25,4 +25,11 @@ tableReservationRouter.post('/', async (req, res, next) => {
     }
 });
 
+//get all table reservations
+tableReservationRouter.get('/', (req, res, next)=> {
+    TableReservation.find()
+    .then(reservations => res.send(reservations))
+    .catch(next)
+})
+
 module.exports = tableReservationRouter;
